@@ -6,6 +6,7 @@ import pymongo
 import certifi
 import urllib.parse
 import requests
+import json
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -53,6 +54,8 @@ def post_affluence():
 @cross_origin()
 def display_lieu():
     return 'lieu'
+
+
 ca = certifi.where()
 client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
 db = client['Smartcy']
@@ -62,7 +65,9 @@ def postJsonHandler():
     print (request.is_json)
     content = request.get_json()
     print (content)
-    affluence.insert_one(content)
+    json_1 = json.load(content)
+    collection_info = json_1
+    affluence.insert_one(collection_info)
     return {"sucess":"True"}
 
 if __name__ == "__main__":
