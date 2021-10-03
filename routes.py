@@ -59,7 +59,7 @@ def postJsonHandler():
     print (request.is_json)
     content = request.get_json()
     print (content)
-    return content
+    return {"sucess":"True"}
 
 if __name__ == "__main__":
     app.run()
