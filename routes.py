@@ -1,5 +1,5 @@
 from Affluence import Affluence
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from bson.json_util import dumps
 import pymongo
@@ -47,6 +47,7 @@ def post_affluence():
         affluence_json = {'lat':lat, 'lon':lon, 'densite':data['densite'], 'remarque':data['remarque']}
         affluence = db.affluence
         affluence.insert_one(affluence_json)
+        return jsonify(affluence_json)
 
 @app.route("/lieu")
 @cross_origin()
