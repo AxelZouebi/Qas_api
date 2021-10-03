@@ -56,9 +56,14 @@ def display_lieu():
 
 @app.route('/postjson', methods = ['POST'])
 def postJsonHandler():
+    ca = certifi.where()
+    client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
+    db = client['Smartcy']
     print (request.is_json)
     content = request.get_json()
     print (content)
+    affluence = db.affluence
+    affluence.insert_one(content)
     return {"sucess":"True"}
 
 if __name__ == "__main__":
