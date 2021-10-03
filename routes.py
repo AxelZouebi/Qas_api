@@ -56,12 +56,12 @@ def display_lieu():
 ca = certifi.where()
 client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
 db = client['Smartcy']
+affluence = db.affluence
 @app.route('/postjson', methods = ['POST'])
 def postJsonHandler():
     print (request.is_json)
     content = request.get_json()
     print (content)
-    affluence = db.affluence
     affluence.insert_one(content)
     return {"sucess":"True"}
 
