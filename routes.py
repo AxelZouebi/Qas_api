@@ -24,12 +24,13 @@ def display_affluence():
     db = client['Smartcy']
     if request.method == 'POST':
         print('post method la ici')
-        address = request.json['address']
+        data = request.get_json()
+        address = data['address']
         url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
         response = requests.get(url).json()
         lat = response[0]["lat"]
         lon = response[0]["lon"]
-        new_affluence = Affluence(lat=lat, lon=lon, densite=request.json['densite'], remarque=request.json['remarque']).save()
+        new_affluence = Affluence(lat=lat, lon=lon, densite=data['densite'], remarque=data['remarque']).save()
     else: 
         affluence = db.affluence
         json_lieu = list(affluence.find())
