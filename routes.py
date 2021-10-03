@@ -23,6 +23,7 @@ def display_affluence():
     client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
     db = client['Smartcy']
     if request.method == 'POST':
+        print('post method la ici')
         address = request.json['address']
         url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
         response = requests.get(url).json()
