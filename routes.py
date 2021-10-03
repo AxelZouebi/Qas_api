@@ -1,5 +1,6 @@
 from Affluence import Affluence
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from bson.json_util import dumps
 import pymongo
 import certifi
@@ -7,12 +8,16 @@ import urllib.parse
 import requests
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
+@cross_origin()
 def display():
     return 'root'
 
 @app.route("/affluence", methods = ['POST', 'GET'])
+@cross_origin()
 def display_affluence():
     ca = certifi.where()
     client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
@@ -36,6 +41,7 @@ def display_affluence():
         return json_data
 
 @app.route("/lieu")
+@cross_origin()
 def display_lieu():
     return 'lieu'
 
