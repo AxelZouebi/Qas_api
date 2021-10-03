@@ -29,8 +29,6 @@ def display_affluence():
         lat = response[0]["lat"]
         lon = response[0]["lon"]
         new_affluence = Affluence(lat=lat, lon=lon, densite=request.json['densite'], remarque=request.json['remarque']).save()
-        affluence = db.affluence
-        affluence.insert_one(new_affluence)
     else: 
         affluence = db.affluence
         json_lieu = list(affluence.find())
