@@ -32,7 +32,7 @@ def display_affluence():
 
 @app.route("/affluence.json", methods = ['POST'])
 @cross_origin()
-def display_affluence():
+def post_affluence():
     ca = certifi.where()
     client=pymongo.MongoClient('mongodb+srv://dbSmartcy:Dsrush2021@cluster0.linaa.mongodb.net/Smartcy', tlsCAFile=ca)
     db = client['Smartcy']
