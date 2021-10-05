@@ -32,15 +32,13 @@ def display_affluence():
     json_data = dumps(All_lieu)
     return json_data
 
-
-
 @app.route('/post_affluence', methods = ['POST'])
 @cross_origin()
 def post_affluence():
     if request.is_json:
         content = request.get_json()
         affluence.insert_one(content)
-        return {"sucsess":"True"}
+        return {"success":"True"}
     else:
         return {"success": "But not json"}
 
